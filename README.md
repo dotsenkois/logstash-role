@@ -1,0 +1,2 @@
+# logstash-role
+logstash-role
