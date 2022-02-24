@@ -1,0 +1,7 @@
+---
+- name: restart logstash
+  become: true
+  service:
+    name: logstash
+    state: restarted
+  when: ansible_virtualization_type != 'docker'

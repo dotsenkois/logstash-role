@@ -1,0 +1,7 @@
+---
+- name: Install logstash
+  become: true
+  apt:
+    deb: "/tmp/logstash-{{ logstash_version }}-amd64.deb"
+    state: present
+  notify: restart logstash

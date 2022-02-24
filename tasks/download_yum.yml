@@ -1,0 +1,15 @@
+---
+- name: "Download logstash's rpm"
+  get_url:
+    url: "https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}-x86_64.rpm"
+    dest: "logstash-{{ logstash_version }}-x86_64.rpm"
+    validate_certs: false
+  register: download_logstash
+  delegate_to: localhost
+  until: download_logstash is succeeded
+  when: logstash_install_type == 'remote'
+- name: Copy logstash to managed node
+  copy:
+    src: "files/logstash-{{ logstash_version }}-x86_64.rpm"
+    mode: 0755
+    dest: "/tmp/logstash-{{ logstash_version }}-x86_64.rpm"

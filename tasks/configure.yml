@@ -1,0 +1,8 @@
+---
+- name: Configure logstash
+  become: logstash
+  template:
+    src: logstash.yml.j2
+    mode: 0644
+    dest: /etc/logstash/logstash.yml
+  notify: restart logstash
