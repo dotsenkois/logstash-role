@@ -1,6 +1,6 @@
 ---
 - name: Configure logstash
-  become: logstash
+  become: true
   template:
     src: logstash.yml.j2
     mode: 0644
