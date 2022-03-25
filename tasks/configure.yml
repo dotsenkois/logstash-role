@@ -5,8 +5,8 @@
     src: logstash.yml.j2
     mode: 0644
     dest: /etc/logstash/logstash.yml
-  notify: restart logstash
-- name: thin Configure
+- name: thin Configure logstash
+  become: true
   template:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
@@ -14,3 +14,4 @@
     - { src: 'filter.conf.j2', dest: '/etc/logstash/conf.d/filter.conf' }
     - { src: 'input.conf.j2', dest: '/etc/logstash/conf.d/input.conf' }
     - { src: 'output.conf.j2', dest: '/etc/logstash/conf.d/output.conf' }
+  notify: restart logstash
