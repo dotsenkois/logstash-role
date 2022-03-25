@@ -1,5 +1,5 @@
 ---
-- name: "Check that deb is exists"
+- name: "Check that logstash's deb is exists"
   stat:
     path: "files/logstash-{{ logstash_version }}-amd64.deb"
   register: stat_result
