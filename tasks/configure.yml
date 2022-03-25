@@ -6,3 +6,11 @@
     mode: 0644
     dest: /etc/logstash/logstash.yml
   notify: restart logstash
+- name: thin Configure
+  template:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+  loop:
+    - { src: 'templates/filter.conf.j2', dest: '/etc/logstash/conf.d/filter.conf' }
+    - { src: 'templates/input.conf.j2', dest: '/etc/logstash/conf.d/input.conf' }
+    - { src: 'templates/output.conf.j2', dest: '/etc/logstash/conf.d/output.conf' }
