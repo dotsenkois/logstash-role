@@ -1,4 +1,9 @@
 ---
+- name: "Check that deb is exists"
+  stat:
+    path: "files/logstash-{{ logstash_version }}-amd64.deb"
+  register: stat_result
+  delegate_to: localhost
 - name: "Download logstash's deb"
   get_url:
     url: "https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}-amd64.deb"
