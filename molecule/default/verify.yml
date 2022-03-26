@@ -10,16 +10,11 @@
   #     that: true
   - name: Check logstash
     become: true
-    command: /usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'
+    shell: /usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'
     register: logstash_is_running
-  - debug:
-      var: logstash_is_running
+  - name: assert 
+    assert:
+      that: "'Successfully started Logstash API endpoint' in logstash_is_running.stdout"
+      quiet: true  
 
 
-  # - name: set correct fact
-  #   set_facts: 
-  #     dbg_msg: "Successfully started Logstash API endpoint"
-  # - name: enshure message is sent
-  #   assert:
-  #     that:
-  #       - "'d'"
