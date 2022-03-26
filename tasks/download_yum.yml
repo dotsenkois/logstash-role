@@ -1,4 +1,9 @@
 ---
+- name: "Check that logstash's deb is exists"
+  stat:
+    path: "files/logstash-{{ logstash_version }}-x86_64.rpm"
+  register: stat_result
+  delegate_to: localhost
 - name: "Download logstash's rpm"
   get_url:
     url: "https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}-x86_64.rpm"
@@ -7,7 +12,9 @@
   register: download_logstash
   delegate_to: localhost
   until: download_logstash is succeeded
-  when: logstash_install_type == 'remote'
+  when: 
+  - not stat_result.stat.exists
+  - logstash_install_type == 'remote'
 - name: Copy logstash to managed node
   copy:
     src: "files/logstash-{{ logstash_version }}-x86_64.rpm"

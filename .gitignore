@@ -1,2 +1,4 @@
 molecule/default/files/logstash-8.0.0-amd64.deb
 molecule/default/files/logstash-8.0.0-x86_64.rpm
+molecule/default/files/logstash-8.1.1-amd64.deb
+molecule/default/files/logstash-8.1.1-x86_64.rpm
