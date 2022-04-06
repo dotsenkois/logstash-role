@@ -1,13 +1,13 @@
 ---
 - name: "Check that logstash's deb is exists"
   stat:
-    path: "files/logstash-{{ logstash_version }}-amd64.deb"
+    path: "{{ pkg_tmp_src }}/logstash-{{ logstash_version }}-amd64.deb"
   register: stat_result
   delegate_to: localhost
 - name: "Download logstash's deb"
   get_url:
     url: "https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}-amd64.deb"
-    dest: "files/logstash-{{ logstash_version }}-amd64.deb"
+    dest: "{{ pkg_tmp_src }}/logstash-{{ logstash_version }}-amd64.deb"
     validate_certs: false
   delegate_to: localhost
   register: download_logstash
@@ -17,6 +17,6 @@
   - logstash_install_type == 'remote'
 - name: Copy logstash to manage host
   copy:
-    src: "files/logstash-{{ logstash_version }}-amd64.deb"
+    src: "{{ pkg_tmp_src }}/logstash-{{ logstash_version }}-amd64.deb"
     mode: 0755
     dest: "/tmp/logstash-{{ logstash_version }}-amd64.deb"

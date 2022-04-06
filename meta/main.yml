@@ -1,9 +1,9 @@
 galaxy_info:
-  author: Dotsenko Ilya
-  description: logstash role
-  company: netology-learn
-  role_name: logstash_role
-  namespace: test
+  author: "dotsenkois"
+  description: logstash role install
+  company: "dotsenkois"
+  role_name: "logstash_role"
+  namespace: "elk_stack"
 
 
   # If the issue tracker for your role is not on github, uncomment the
